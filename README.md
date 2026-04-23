@@ -1,5 +1,5 @@
 <div align="center">
-
+i dont even know if these will work for you so use it at your own risk
 # noerv's hyprland rice
 
 **pywal-powered hyprland setup on cachyos**
@@ -190,9 +190,8 @@ launch: `~/.local/bin/start-quickshell.sh` or add to hyprland `exec-once`
 
 ## notes
 
-- edit `monitors.conf` before launching
-- remove `nvidia.conf` if on amd/intel
-- quickshell assets (gifs, pfps) are personal — replace them
+-if you are using an nvdia card you can comment out the "#" for nvdia in hyprland.conf
+- quickshell assets (gifs, pfps pfps arent a thing anymore) are personal — replace them
 - wallpapers folder is a sample, not the full collection
 
 ---
