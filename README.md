@@ -1,6 +1,6 @@
 <div align="center">
 
-# neverchosen's hyprland rice
+# noerv's hyprland rice
 
 **pywal-powered hyprland setup on cachyos**
 
@@ -16,8 +16,8 @@
 ## what's in here
 
 - **hyprland** — compositor, animations, keybinds
-- **waybar** — status bar themed via pywal
-- **quickshell** — custom qml shell: bar, dashboard, audio/bluetooth/wifi/calendar/launcher/music panels, notification center
+- **?waybar?** — status bar themed via pywal (not used but is still there)
+- **quickshell** — custom qml shell: bar, dashboard, audio/bluetooth/wifi/calendar/launcher/music panels, notification center,status bar
 - **rofi** — app launcher + applets (powermenu, volume, brightness, screenshot)
 - **kitty** — terminal
 - **hyprlock** — lock screen with blurred wallpaper + clock
