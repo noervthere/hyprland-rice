@@ -31,7 +31,7 @@
 
 ## screenshots
 
-> add some
+![Screenshot](screenshots/example.png)
 
 ---
 
@@ -66,7 +66,7 @@ paru -S python-pywalfox pywal-discord-git \
 ## install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hyprland-rice.git ~/hyprland-rice
+git clone https://github.com/noerv/hyprland-rice.git ~/hyprland-rice
 cd ~/hyprland-rice
 bash install.sh
 ```

@@ -6,5 +6,5 @@ end
 
 
 fish_add_path ~/.local/bin
-fish_add_path /home/neverchosen/.spicetify
+fish_add_path ~/.spicetify
 

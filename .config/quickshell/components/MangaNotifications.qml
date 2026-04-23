@@ -168,7 +168,7 @@ PanelWindow {
 
                 // Madoka character (now on the RIGHT)
                 Image {
-                    source: "file:///home/neverchosen/Belgeler/madoka.png"
+                    source: "../assets/madoka.png"
                     Layout.alignment: Qt.AlignBottom
                     fillMode: Image.PreserveAspectFit
                     sourceSize.height: 220
