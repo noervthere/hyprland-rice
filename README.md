@@ -16,13 +16,13 @@
 ## what's in here
 
 - **hyprland** — compositor, animations, keybinds
-- **?waybar?** — status bar themed via pywal (not used but is still there)
 - **quickshell** — custom qml shell: bar, dashboard, audio/bluetooth/wifi/calendar/launcher/music panels, notification center,status bar
 - **rofi** — app launcher + applets (powermenu, volume, brightness, screenshot)
 - **kitty** — terminal
 - **hyprlock** — lock screen with blurred wallpaper + clock
 - **swayosd** — volume/brightness overlay
 - **swaync** — notification daemon
+- **?waybar?** — status bar themed via pywal (not used but is still there)
 - **fastfetch** — system info with custom ascii logo
 - **fish** — shell with tide prompt and wal-sync
 - **pywal** theming across: waybar, rofi, kitty, zen browser, spotify, discord, swayosd, swaync
@@ -196,10 +196,3 @@ launch: `~/.local/bin/start-quickshell.sh` or add to hyprland `exec-once`
 - wallpapers folder is a sample, not the full collection
 
 ---
-
-## credits
-
-- [hyprland](https://hyprland.org/)
-- [pywal](https://github.com/dylanaraps/pywal)
-- [adi1090x](https://github.com/adi1090x) — rofi themes base
-- [quickshell](https://github.com/outfoxxed/quickshell)
