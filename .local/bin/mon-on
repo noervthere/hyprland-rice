@@ -1,0 +1,3 @@
+#!/bin/bash
+# Only start monitoring if it's not already on
+pactl load-module module-loopback source=clownfish_mic sink=@DEFAULT_SINK@

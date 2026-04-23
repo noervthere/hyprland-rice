@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Target the source we found earlier
+SOURCE="clownfish_mic"
+
+# Check if loopback is running
+MODULE_ID=$(pactl list modules short | grep "module-loopback" | awk '{print $1}')
+
+if [ -n "$MODULE_ID" ]; then
+    pactl unload-module "$MODULE_ID"
+    notify-send "Mic Monitor" "OFF" --icon=audio-input-microphone-muted -h string:x-canonical-private-synchronous:mic-notify
+else
+    # latency_msec=1 keeps it snappy for voice effects
+    pactl load-module module-loopback source="$SOURCE" sink=@DEFAULT_SINK@ latency_msec=1
+    notify-send "Mic Monitor" "ON (Clownfish)" --icon=audio-input-microphone -h string:x-canonical-private-synchronous:mic-notify
+fi

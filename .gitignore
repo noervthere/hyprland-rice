@@ -1,0 +1,12 @@
+.config/quickshell/state/
+.config/quickshell/app_usage.json
+.config/wal/colors*
+.config/wal/sequences
+.config/kitty/*.bak
+.config/fish/fish_history
+wallpapers/.current-blurred.jpg
+**/*.save
+**/*.bak*
+.vscode/
+*.swp
+*~

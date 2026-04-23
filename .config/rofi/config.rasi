@@ -1,0 +1,109 @@
+/**
+ * Stylish Pywal Rofi Theme
+ * Designed for Hyprland & Arch Linux
+ */
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    display-drun: " ";
+    display-run: " ";
+    display-window: " ";
+    drun-display-format: "{name}";
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+/* 
+ * Automatically import Pywal's generated rofi colors 
+ * This ensures the theme always matches your current wallpaper 
+ */
+@import "~/.cache/wal/colors-rofi-dark"
+
+* {
+    font: "JetBrainsMono Nerd Font 12";
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+window {
+    width: 650px;
+    border: 2px;
+    /* Using selected-normal-background as a vibrant accent border */
+    border-color: @selected-normal-background; 
+    border-radius: 16px;
+    background-color: @background;
+    padding: 30px;
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    spacing: 20px;
+}
+
+inputbar {
+    padding: 15px 20px;
+    border-radius: 12px;
+    background-color: @alternate-normal-background;
+    children: [prompt, entry];
+    border: 1px;
+    border-color: @alternate-normal-background;
+}
+
+prompt {
+    text-color: @selected-normal-background;
+    font: "JetBrainsMono Nerd Font Bold 16";
+    padding: 0 15px 0 0;
+    vertical-align: 0.5;
+}
+
+entry {
+    placeholder: "Search applications...";
+    placeholder-color: @normal-foreground;
+    text-color: @foreground;
+    vertical-align: 0.5;
+    cursor: text;
+}
+
+listview {
+    lines: 7;
+    columns: 1;
+    spacing: 8px;
+    dynamic: true;
+    scrollbar: false;
+}
+
+element {
+    padding: 12px 15px;
+    border-radius: 10px;
+    spacing: 15px;
+    cursor: pointer;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal {
+    /* Main accent color for selection indicator */
+    background-color: @selected-normal-background;
+    /* Contrast text color against the selected background */
+    text-color: @selected-normal-foreground;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: inherit;
+    cursor: inherit;
+    highlight: bold;
+}
+
+element-icon {
+    size: 28px;
+    cursor: inherit;
+    padding: 0 15px 0 0;
+}

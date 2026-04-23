@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# Watches for pywal color changes and updates swayosd automatically
+
+WAL_CACHE="${HOME}/.cache/wal"
+PYWAL_COLORS="${WAL_CACHE}/colors.json"
+OSD_STYLE="${HOME}/.config/swayosd/style.css"
+LAST_MOD=""
+
+update_swayosd_colors() {
+    if [[ ! -f "$PYWAL_COLORS" ]]; then
+        return 1
+    fi
+
+    local color0 color15
+    color0=$(python3 -c "import json; c=json.load(open('$PYWAL_COLORS')); print(c['colors']['color0'])")
+    color15=$(python3 -c "import json; c=json.load(open('$PYWAL_COLORS')); print(c['colors']['color15'])")
+
+    color0="#${color0#\#}"
+    color15="#${color15#\#}"
+
+    sed -e "s/@theme_bg_color/${color0}/g" \
+        -e "s/@theme_fg_color/${color15}/g" \
+        "$OSD_STYLE" > "${OSD_STYLE}.tmp"
+    mv "${OSD_STYLE}.tmp" "${OSD_STYLE}"
+}
+
+signal_reload() {
+    pkill swayosd-server 2>/dev/null
+    sleep 0.5
+    swayosd-server &
+}
+
+check_and_update() {
+    local current_mod
+    current_mod=$(stat -c %Y "$PYWAL_COLORS" 2>/dev/null)
+    
+    if [[ "$current_mod" != "$LAST_MOD" ]] && [[ -n "$current_mod" ]]; then
+        LAST_MOD="$current_mod"
+        update_swayosd_colors
+        signal_reload
+        echo "$(date): Updated swayosd colors"
+    fi
+}
+
+initial_sync() {
+    if [[ -f "$PYWAL_COLORS" ]]; then
+        LAST_MOD=$(stat -c %Y "$PYWAL_COLORS")
+        update_swayosd_colors
+        if pgrep -x swayosd-server >/dev/null; then
+            pkill swayosd-server 2>/dev/null
+        fi
+        sleep 0.5
+        swayosd-server &
+    fi
+}
+
+if [[ "$1" == "--sync" ]]; then
+    update_swayosd_colors
+    pkill swayosd-server 2>/dev/null
+    sleep 0.5
+    swayosd-server &
+    exit 0
+fi
+
+echo "Watching ${WAL_CACHE} for color changes..."
+initial_sync
+
+while true; do
+    sleep 1
+    check_and_update
+done

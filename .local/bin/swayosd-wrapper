@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Wrapper that protects swayosd-server from SIGUSR1
+
+trap '' SIGUSR1
+
+exec /usr/bin/swayosd-server "$@"

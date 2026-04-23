@@ -1,0 +1,4 @@
+# ── SwayOSD ─────────────────────────────────────────────────────────────────
+# Restart swayosd-server to pick up new colors (it reads style on launch)
+pkill swayosd-server 2>/dev/null; sleep 0.2
+swayosd-server &

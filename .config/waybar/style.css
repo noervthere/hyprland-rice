@@ -1,0 +1,162 @@
+@import "../../.cache/wal/colors-waybar.css";
+
+/* Global overrides for a premium vibe */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 800; /* Bolder font for that premium chunky look */
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: @foreground;
+}
+
+/* Base containers */
+.modules-left, .modules-center, .modules-right {
+    background-color: transparent;
+}
+
+/* 
+ * Island pill aesthetic 
+ * Using slight transparency on the pywal background with smooth drop shadows 
+ */
+#workspaces,
+#group-left1,
+#group-left2,
+#group-left3,
+#group-right1,
+#group-right2,
+#group-right3,
+#group-tray-expander {
+    background-color: alpha(@background, 0.95); 
+    border-radius: 100px; 
+    margin: 6px 4px;
+    padding: 2px 6px;
+    border: 1px solid alpha(#ffffff, 0.12); /* Adds frosted glass edge */
+    box-shadow: 0px 2px 4px alpha(#000000, 0.2); /* Reduced shadow intensity */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#workspaces:hover,
+#group-left1:hover,
+#group-left2:hover,
+#group-left3:hover,
+#group-right1:hover,
+#group-right2:hover,
+#group-right3:hover {
+    box-shadow: 0px 4px 6px alpha(#000000, 0.35); /* Toned down hover shadow */
+    background-color: @background;
+    border: 1px solid alpha(#ffffff, 0.2);
+}
+
+/* In-group item distinct pill styling! */
+#custom-launcher, #idle_inhibitor, #custom-updatespacman, #mpris, #clock, #power-profiles-daemon, #pulseaudio, #memory, #cpu, #bluetooth, #network, #battery, #custom-tray-arrow, #tray {
+    padding: 2px 14px;
+    margin: 2px 4px;
+    border-radius: 100px;
+    color: @foreground;
+    background-color: alpha(@foreground, 0.08); /* Gives every individual module a visible pill shape! */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 
+ * Workspaces - The Expanding Pill Magic
+ * Text is restored, but the pill dynamically widens when active!
+ */
+#workspaces button {
+    padding: 0 10px;
+    margin: 2px 4px;
+    background-color: alpha(@color7, 0.2); 
+    color: @foreground; /* Restore text visibility */
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#workspaces button:hover {
+    background-color: alpha(@color3, 0.4);
+    box-shadow: 0 0 8px alpha(@color3, 0.4);
+}
+
+#workspaces button.active {
+    background-color: @color1;
+    color: @background;
+    padding: 0 20px; /* Expands outward dynamically! */
+    box-shadow: 0 0 12px alpha(@color1, 0.6);
+}
+
+#workspaces button.urgent {
+    background-color: @color3;
+    color: @background;
+    animation: urgent-pulse 1s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+
+/* 
+ * Component Interactions
+ * Custom Launcher gets a glowing CSS gradient
+ */
+#custom-launcher {
+    background: linear-gradient(45deg, @color1, @color5);
+    color: @background; /* Ensures clear contrast over bright gradient */
+    box-shadow: 0 0 8px alpha(@color1, 0.5);
+}
+#custom-launcher:hover { 
+    box-shadow: 0 0 14px alpha(@color1, 0.8); 
+    background: linear-gradient(45deg, @color5, @color1); 
+    color: #ffffff;
+}
+
+/* Applying stunning Pywal colors natively */
+#clock { color: @color5; }
+#custom-updatespacman { color: @color3; }
+#mpris { color: @color6; font-style: italic; }
+#cpu { color: @color1; }
+#memory { color: @color3; }
+#pulseaudio { color: @color6; }
+#bluetooth { color: @color4; }
+#network { color: @color5; }
+#battery { color: @color2; }
+
+/* 
+ * Hover interactions across system stats
+ * Make the entire pill bloom in its respective pywal color on hover!
+ */
+#cpu:hover { background-color: alpha(@color1, 0.25); color: @color1; text-shadow: 0 0 6px @color1; }
+#memory:hover { background-color: alpha(@color3, 0.25); color: @color3; text-shadow: 0 0 6px @color3; }
+#pulseaudio:hover { background-color: alpha(@color6, 0.25); color: @color6; text-shadow: 0 0 6px @color6; }
+#bluetooth:hover { background-color: alpha(@color4, 0.25); color: @color4; text-shadow: 0 0 6px @color4; }
+#network:hover { background-color: alpha(@color5, 0.25); color: @color5; text-shadow: 0 0 6px @color5; }
+#battery:hover { background-color: alpha(@color2, 0.25); color: @color2; text-shadow: 0 0 6px @color2; }
+
+/* Make the clock heavily prominent upon hover since it controls the calendar */
+#clock:hover { 
+    background-color: alpha(@color5, 0.25); 
+    box-shadow: inset 0 0 0 2px @color5; 
+}
+
+
+/* Status Logic */
+#battery.charging { color: @color2; background-color: alpha(@color2, 0.15); }
+#battery.warning:not(.charging) { color: @color3; animation: pulse-warning 2s ease infinite alternate; }
+#battery.critical:not(.charging) { color: @color1; animation: blink 1s steps(2, start) infinite; }
+
+#network.disconnected, #bluetooth.disabled {
+    color: @color8; /* muted pywal dark grey */
+    opacity: 0.5;
+}
+
+/* Keyframes */
+@keyframes blink { to { opacity: 0.3; } }
+@keyframes urgent-pulse {
+    0% { box-shadow: 0 0 2px @color3; }
+    50% { box-shadow: 0 0 12px @color3; }
+    100% { box-shadow: 0 0 2px @color3; }
+}
+@keyframes pulse-warning {
+    0% { color: @color3; }
+    100% { color: @color1; text-shadow: 0 0 5px @color1; }
+}

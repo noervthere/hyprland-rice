@@ -1,0 +1,145 @@
+{
+  "exclusive": true,
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 38,
+  "margin-top": 4,
+  "margin-bottom": 0,
+  "margin-left": 8,
+  "margin-right": 8,
+  "modules-left": ["group/left1", "group/left3", "group/left2"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["group/right2", "group/right1", "group/right3"],
+
+  // --- Left Groups ---
+  "group/left1": {
+    "orientation": "inherit",
+    "modules": ["custom/launcher"]
+  },
+
+  "group/left3": {
+    "orientation": "inherit",
+    "modules": ["clock"]
+  },
+
+
+ "group/left2": {
+    "orientation": "inherit",
+    "modules": ["mpris"]
+  },
+
+  // --- Right Groups ---
+  "group/right1": {
+    "orientation": "inherit",
+    "modules": ["pulseaudio", "memory", "cpu"]
+  },
+
+  "group/right2": {
+    "orientation": "inherit",
+    "modules": ["group/tray-expander"]
+  },
+
+  "group/right3": {
+    "orientation": "inherit",
+    "modules": ["bluetooth", "network", "battery"]
+  },
+
+  // --- Modules Configuration ---
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "focused": "",
+      "active": "",
+      "urgent": ""
+    },
+    "persistent-workspaces": { "*": 10 }
+  },
+
+  "custom/launcher": {
+    "format": "󰣇 ",
+    "on-click": "quickshell ipc call launcher toggle",
+    "on-click-right": "kitty",
+    "tooltip-format": "App Launcher"
+  },
+
+  "clock": {
+    "format": " {:%d/%m %H:%M}",
+    "tooltip-format": "<span>{calendar}</span>",
+    "on-click": "quickshell ipc call calendar toggle"
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "on-click": "quickshell ipc call bluetooth toggle"
+  },
+
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
+    "on-click": "quickshell ipc call wifi toggle"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "on-click": "quickshell ipc call dashboard toggle"
+  },
+
+  "mpris": {
+    "format": "  {artist} - {title}",
+    "max-length": 25,
+    "on-click": "quickshell ipc call music toggle"
+  },
+
+  "custom/updatespacman": {
+    "format": "󰮯 {}",
+    "interval": 3600,
+    "exec": "checkupdates | wc -l",
+    "on-click": "kitty --class floating -e sudo pacman -Syu"
+  },
+
+  "cpu": { "format": "  {usage}%", "on-click": "kitty --class floating -e btop" },
+  "memory": { "format": "  {used:0.1f}G", "on-click": "gnome-system-monitor" },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "  Muted",
+    "format-icons": {
+        "default": ["", "", ""]
+    },
+    "on-click": "quickshell ipc call audio toggle"
+  },
+
+  // --- Windows-style System Tray Drawer ---
+  "group/tray-expander": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-child",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/tray-arrow",
+      "tray"
+    ]
+  },
+
+  "custom/tray-arrow": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  }
+}

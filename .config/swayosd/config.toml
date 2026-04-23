@@ -1,0 +1,4 @@
+[server]
+# Back to bottom of screen but shifted left
+top_margin = 0.92
+style = "/home/neverchosen/.config/swayosd/style.css"
