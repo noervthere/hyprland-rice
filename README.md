@@ -1,5 +1,7 @@
 <div align="center">
 i dont even know if these will work for you so use it at your own risk
+  you might have to troubleshoot some stuff
+  
 # noerv's hyprland rice
 
 **pywal-powered hyprland setup on cachyos**
