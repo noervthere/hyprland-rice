@@ -68,7 +68,7 @@ paru -S python-pywalfox pywal-discord-git \
 ## install
 
 ```bash
-git clone https://github.com/noerv/hyprland-rice.git ~/hyprland-rice
+git clone https://github.com/noervthere/hyprland-rice.git ~/hyprland-rice
 cd ~/hyprland-rice
 bash install.sh
 ```
