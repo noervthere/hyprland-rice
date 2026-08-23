@@ -1,3 +1,5 @@
+this thing is also pretty outdated, not advised for usage.
+
 <div align="center">
 i dont even know if these will work for you so use it at your own risk
   you might have to troubleshoot some stuff
